@@ -1,0 +1,382 @@
+@font-face {
+    font-family: 'Tomato-Soup';
+    src: url('../fonts/Tomato-Soup/TomatoSoup-Regular.eot');
+    src: url('../fonts/Tomato-Soup/TomatoSoup-Regular.woff') format('woff'),
+        url('../fonts/Tomato-Soup/TomatoSoup-Regular.otf') format('opentype'),
+        url('../fonts/Tomato-Soup/TomatoSoup-Regular.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Inter-Thin';
+    src: url('../fonts/Inter/Inter-Thin-BETA.eot');
+    src: url('../fonts/Inter/Inter-Thin-BETA.woff') format('woff'),
+        url('../fonts/Inter/Inter-Thin-BETA.otf') format('opentype'),
+        url('../fonts/Inter/Inter-Thin-BETA.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Novar';
+    src: url('../fonts/Novar/Novar.eot');
+    src: url('../fonts/Novar/Novar.woff') format('woff'),
+        url('../fonts/Novar/Novar.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Argesta';
+    src: url('../fonts/Argesta/argestadisplay-regular-webfont.eot');
+    src: url('../fonts/Argesta/argestadisplay-regular-webfont.woff') format('woff');
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid-canvas {
+    z-index: 10;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#slideshow-canvas {
+    z-index: 11;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#hero-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.title-box {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.title-text-small {
+    font-family: 'Cormorant Garamond', serif;
+    color: #444;
+    font-weight: 100;
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    margin-bottom: 10px;
+}
+
+.title-text {
+    margin: 0 15px;
+    font-family: 'Argesta';
+    color: #444;
+    font-weight: 100;
+    font-size: 3vw;
+    line-height: 3vw;
+    /* margin-bottom: 6vh; */
+}
+
+.flower-box {
+    position: relative;
+    height: 66px;
+    width: 66px;
+    /* margin-bottom: 6vh; */
+}
+
+.flower-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.prints-text {
+    font-family: 'Cormorant Garamond', serif;
+    color: #444;
+    font-weight: 100;
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+}
+
+#ig-logo {
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: 25px;
+    height: 25px;
+    opacity: 0.5;
+}
+
+#ig-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+/* GRID BOX */
+/* GRID BOX */
+/* GRID BOX */
+
+.grid-aligner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    max-width: 50%;
+}
+
+/* Use this to size margins on images */
+.grid-curtain {
+    padding-bottom: 8px;
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+.grid-curtain img {
+    vertical-align: middle;
+    width: 100%;
+    /* hide the original image */
+    opacity: 0;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 992px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 600px) {
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #hero-box {
+        position: relative;
+        height: 75vh;
+    }
+
+    #ig-logo {
+        cursor: pointer;
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 25px;
+        height: 25px;
+        opacity: 0.5;
+    }
+
+    #ig-logo img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .grid-aligner {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 10vw;
+        width: 80vw;
+    }
+
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .title-text-small {
+        font-size: 3vw;
+        line-height: 3vw;
+    }
+
+    .title-text {
+        font-size: 6vw;
+        line-height: 6vw;
+    }
+
+    .prints-text {
+        font-size: 3vw;
+        line-height: 3vw;
+    }
+}
+
+/*** in case of error show the image ***/
+.no-curtains .grid-curtain {
+}
+
+.no-curtains .grid-curtain img {
+    opacity: 1;
+}
+
+/* SLIDESHOW BOX */
+/* SLIDESHOW BOX */
+/* SLIDESHOW BOX */
+
+.slideshow-box {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideshow-curtain {
+    position: fixed;
+}
+
+@media screen and (min-width: 992px) {
+    .portrait {
+        height: 75vh;
+    }
+
+    .landscape {
+        width: 50vw;
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 600px) {
+    .portrait {
+        height: 75vh;
+    }
+
+    .landscape {
+        width: 80vw;
+    }
+}
+
+.landscape img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+
+    /* hide the original image */
+    opacity: 0;
+}
+
+.portrait img {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 100%;
+
+    /* hide the original image */
+    opacity: 0;
+}
+
+.white {
+    width: 100%;
+    height: 100%;
+
+    /* hide the original image */
+    opacity: 0;
+}
+
+.white img {
+    width: 100%;
+    height: 100%;
+}
+
+/*** in case of error show the image ***/
+.no-curtains .slideshow-curtain {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-curtains .slideshow-curtain img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+#navigation {
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#navigation-previous {
+    cursor: url('../images/cursor-previous.png'), auto;
+    /* cursor: w-resize; */
+    width: 35%;
+    height: 100vh;
+}
+
+#navigation-back {
+    cursor: url('../images/cursor-close.png'), auto;
+    /* cursor: n-resize; */
+    width: 30%;
+    height: 100vh;
+}
+
+#navigation-next {
+    cursor: url('../images/cursor-next.png'), auto;
+    /* cursor: e-resize; */
+    width: 35%;
+    height: 100vh;
+}
