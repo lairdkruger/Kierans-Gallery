@@ -12,151 +12,44 @@
             rel="stylesheet"
         />
     </head>
+
     <body>
         <div id="grid-canvas"></div>
-        <div id="slideshow-canvas"></div>
 
-        <div id="hero-box">
-            <div class="title-box">
-                <h2 class="title-text-small">
-                    - photographs by -
-                </h2>
-                <h1 class="title-text">
-                    Kieran Kruger
-                </h1>
-            </div>
-            <div class="flower-box">
-                <img src="images/flower.jpg" crossorigin="anonymous" />
-            </div>
-            <h3 class="prints-text">
-                prints coming soon
-            </h3>
-            <div id="ig-logo">
-                <img src="images/ig.png" alt="" crossorigin="anonymous" />
-            </div>
-        </div>
+        <div class="grid-container">
+            <div class="grid">
+                <div class="grid-curtain portrait">
+                    <img class="grid-image" src="images/1.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img class="grid-image" src="images/2.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img class="grid-image" src="images/3.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img class="grid-image" src="images/4.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img class="grid-image" src="images/7.jpg" crossorigin="anonymous" />
+                </div>
 
-        <div class="grid-aligner">
-            <div class="grid-box">
-                <div class="row">
-                    <div class="column">
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/1.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/2.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/3.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/4.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/5.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/6.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/7.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/8.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/9.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                        <div class="grid-curtain">
-                            <img
-                                class="grid-image"
-                                src="images/10.jpg"
-                                crossorigin="anonymous"
-                            />
-                        </div>
-                    </div>
+                <div class="grid-curtain landscape">
+                    <img class="grid-image" src="images/6.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img class="grid-image" src="images/5.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img class="grid-image" src="images/8.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img class="grid-image" src="images/9.jpg" crossorigin="anonymous" />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img class="grid-image" src="images/10.jpg" crossorigin="anonymous" />
                 </div>
             </div>
-        </div>
-
-        <div class="slideshow-box">
-            <div class="white">
-                <img id="white-image" src="images/white.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain portrait">
-                <img src="images/1.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain landscape">
-                <img src="images/2.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain portrait">
-                <img src="images/3.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain landscape">
-                <img src="images/4.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain portrait">
-                <img src="images/5.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain landscape">
-                <img src="images/6.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain portrait">
-                <img src="images/7.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain landscape">
-                <img src="images/8.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain landscape">
-                <img src="images/9.jpg" crossorigin="anonymous" />
-            </div>
-            <div class="slideshow-curtain portrait">
-                <img src="images/10.jpg" crossorigin="anonymous" />
-            </div>
-        </div>
-
-        <div id="navigation">
-            <div id="navigation-previous"></div>
-            <div id="navigation-back"></div>
-            <div id="navigation-next"></div>
         </div>
 
         <script
@@ -165,12 +58,12 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
         ></script>
-        <script src="src/curtains.min.js"></script>
-        <script src="src/post/morphShader.js"></script>
-        <script src="src/CurtainsGallery.js"></script>
-        <script src="src/post/gridMorphShader.js"></script>
-        <script src="src/CurtainsGridScroller.js"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+
+        <script src="src/masonry.pkgd.min.js"></script>
+
+        <script src="src/Tabletop.js"></script>
         <script src="js/master.js"></script>
     </body>
 </html>
