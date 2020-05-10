@@ -1,6 +1,10 @@
+html {
+    margin: 0;
+    padding: 0;
+}
 body {
     margin: 0;
-
+    padding: 0;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -9,38 +13,39 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: auto;
+    height: 100vh;
 }
 
 .grid {
-    margin: 0;
+    margin: auto;
     padding: 0;
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    /* height: auto; */
 }
 
 /* Use this to size margins on images */
 .grid-curtain {
     cursor: pointer;
+    background-color: lightblue;
+    margin: 2.5%;
 }
 
 .portrait {
     width: 20%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
 }
 
 .landscape {
-    width: 33%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    width: 28%;
 }
 
 .grid-curtain img {

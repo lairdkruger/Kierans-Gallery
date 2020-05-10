@@ -36,14 +36,14 @@ class Tabletop {
         this.windowWidth = window.innerWidth
         this.windowHeight = window.innerHeight
 
-        this.acceleration = 1.0
+        this.acceleration = 0.05
         this.mouse = {
             x: this.windowWidth / 2,
             y: this.windowHeight / 2,
         }
 
-        // grid 25% larger than screen
-        this.size = 1.5
+        // set grid to be larger than screen
+        this.size = 1.33
         this.extraSpace = 1.0
 
         this.init()
@@ -55,7 +55,7 @@ class Tabletop {
 
     init() {
         this.sizeGrid()
-        this.initMasonry()
+        // this.initMasonry()
 
         // this.resize()
 
@@ -66,24 +66,17 @@ class Tabletop {
 
     sizeGrid() {
         // height after filled with images
-        var width = this.grid.container.clientWidth
-        var height = this.grid.container.clientHeight
+        var width = this.grid.element.clientWidth
 
         // make grid 25% larger than screen
-        this.grid.container.style.width = String(width * this.size) + 'px'
-        this.grid.container.style.width = width * this.size
-        this.grid.container.style.height = String(height * this.size) + 'px'
-        this.grid.container.style.height = height * this.size
+        this.grid.element.style.width = String(width * this.size) + 'px'
+        this.grid.element.style.height = String(this.grid.element.offsetHeight) + 'px'
 
         this.gridWidth = this.grid.element.clientWidth
         this.gridHeight = this.grid.element.clientHeight
 
-        this.grid.element.style.marginLeft = String(-width * ((this.size - 1) / 4)) + 'px'
-
-        this.grid.container.style.marginTop =
-            String(-height * ((this.size - 1) / 4)) + 'px'
-
-        console.log((this.size - 1) / 2)
+        // recenter grid in container
+        this.grid.element.style.right = String(width * ((this.size - 1) / 2)) + 'px'
     }
 
     initMasonry() {
@@ -97,9 +90,7 @@ class Tabletop {
     initListeners() {
         var _this = this
 
-        TweenMax.set(this.grid.element, {x: 0, y: 0})
-
-        window.addEventListener('mousemove', function (e) {
+        document.addEventListener('mousemove', function (e) {
             _this.mouseMove(e)
         })
         window.addEventListener('touchmove', function (e) {
@@ -134,8 +125,8 @@ class Tabletop {
             _this.mouse.x,
             0,
             _this.windowWidth,
-            _this.gridWidth / 4,
-            -_this.gridWidth / 4
+            _this.gridWidth / 2,
+            -_this.gridWidth / 2
         )
 
         var easeX = currentX + (_this.grid.x - currentX) * _this.acceleration
@@ -148,13 +139,11 @@ class Tabletop {
             _this.mouse.y,
             0,
             _this.windowHeight,
-            _this.gridHeight / 4,
-            -_this.gridHeight / 4
+            _this.gridHeight / 2,
+            -_this.gridHeight / 2
         )
 
         var easeY = currentY + (_this.grid.y - currentY) * _this.acceleration
-
-        console.log('mouse:' + _this.mouse.y, 'grid:' + _this.grid.y)
 
         this.grid.oldY = easeY
 
