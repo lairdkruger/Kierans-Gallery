@@ -1,23 +1,23 @@
 var mathUtils = {
     lerp: (a, b, n) => n * (a - b) + b,
-    linear: t => t,
-    easeInQuad: t => t * t,
-    easeOutQuad: t => t * (2 - t),
-    easeInOutQuad: t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
-    easeInCubic: t => t * t * t,
-    easeOutCubic: t => --t * t * t + 1,
-    easeInOutCubic: t =>
+    linear: (t) => t,
+    easeInQuad: (t) => t * t,
+    easeOutQuad: (t) => t * (2 - t),
+    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    easeInCubic: (t) => t * t * t,
+    easeOutCubic: (t) => --t * t * t + 1,
+    easeInOutCubic: (t) =>
         t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-    easeInQuart: t => t * t * t * t,
-    easeOutQuart: t => 1 - --t * t * t * t,
-    easeInOutQuart: t => (t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t),
-    easeInQuint: t => t * t * t * t * t,
-    easeOutQuint: t => 1 + --t * t * t * t * t,
-    easeInOutQuint: t =>
+    easeInQuart: (t) => t * t * t * t,
+    easeOutQuart: (t) => 1 - --t * t * t * t,
+    easeInOutQuart: (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t),
+    easeInQuint: (t) => t * t * t * t * t,
+    easeOutQuint: (t) => 1 + --t * t * t * t * t,
+    easeInOutQuint: (t) =>
         t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
 }
 
-class CurtainsGridScroller {
+class CurtainsTabletopScroller {
     // basic setup for curtains.js
     constructor(uniforms, vertexShader, fragmentShader) {
         this.init(uniforms, vertexShader, fragmentShader)
@@ -34,7 +34,7 @@ class CurtainsGridScroller {
             container: 'grid-canvas',
         })
 
-        this.curtains.onError(function() {
+        this.curtains.onError(function () {
             // we will add a class to the document body to display original images
             document.body.classList.add('no-curtains')
         })
@@ -56,7 +56,7 @@ class CurtainsGridScroller {
             this.setupPlanes(i)
         }
 
-        //this.initListeners()
+        this.initListeners()
         this.curtains.enableDrawing
         this.curtains.needRender()
     }
@@ -81,16 +81,23 @@ class CurtainsGridScroller {
         this.gridImages = document.getElementsByClassName('grid-image')
 
         for (var i = 0; i < this.gridImages.length; i++) {
-            this.gridImages[i].addEventListener('click', function() {
+            this.gridImages[i].addEventListener('click', function () {
                 _this.handleClick()
             })
         }
+
+        $(window).on('mousemove', function (e) {
+            var h = $(window).height()
+            var y = e.clientY - h / 2
+            delta = y * 0.1
+            console.log(delta)
+        })
     }
 
     handleClick() {
         var _this = this
 
-        let fadeOutTimerID = setInterval(function() {
+        let fadeOutTimerID = setInterval(function () {
             _this.progress += FADE_OUT_DURATION / (60 * 1000)
             _this.updateUniforms()
             _this.curtains.render()
