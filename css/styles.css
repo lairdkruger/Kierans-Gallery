@@ -1,8 +1,6 @@
 body {
     margin: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -10,7 +8,7 @@ body {
 .grid-container {
     margin: 0;
     padding: 0;
-    position: absolute;
+    position: relative;
     width: 100%;
     height: auto;
 }
@@ -18,12 +16,9 @@ body {
 .grid {
     margin: 0;
     padding: 0;
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-
+    position: relative;
     width: 100%;
+    min-height: 100vh;
     height: auto;
 }
 

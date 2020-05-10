@@ -21,6 +21,7 @@ class Tabletop {
     constructor() {
         this.grid = {
             element: document.getElementsByClassName('grid')[0],
+            container: document.getElementsByClassName('grid-container')[0],
             xMax: 0,
             yMax: 0,
             x: 0,
@@ -32,16 +33,18 @@ class Tabletop {
         this.gridWidth = this.grid.element.clientWidth
         this.gridHeight = this.grid.element.clientHeight
 
-        this.acceleration = 0.05
-        this.mouse = {
-            x: 0,
-            y: 0,
-        }
-
         this.windowWidth = window.innerWidth
         this.windowHeight = window.innerHeight
 
-        this.extraSpace = 1.5
+        this.acceleration = 1.0
+        this.mouse = {
+            x: this.windowWidth / 2,
+            y: this.windowHeight / 2,
+        }
+
+        // grid 25% larger than screen
+        this.size = 1.5
+        this.extraSpace = 1.0
 
         this.init()
     }
@@ -54,7 +57,7 @@ class Tabletop {
         this.sizeGrid()
         this.initMasonry()
 
-        this.resize()
+        // this.resize()
 
         this.initListeners()
 
@@ -62,25 +65,29 @@ class Tabletop {
     }
 
     sizeGrid() {
-        var gridContainer = document.getElementsByClassName('grid-container')[0]
-
         // height after filled with images
-        var height = this.grid.element.clientHeight
-        var width = this.grid.element.clientWidth
+        var width = this.grid.container.clientWidth
+        var height = this.grid.container.clientHeight
 
         // make grid 25% larger than screen
-        gridContainer.style.width = String(width * 1.25) + 'px'
-        gridContainer.style.width = width * 1.25
-        gridContainer.style.height = String(height * 1.25) + 'px'
-        gridContainer.style.height = height * 1.25
+        this.grid.container.style.width = String(width * this.size) + 'px'
+        this.grid.container.style.width = width * this.size
+        this.grid.container.style.height = String(height * this.size) + 'px'
+        this.grid.container.style.height = height * this.size
 
-        gridContainer.style.left = String(-width * 0.125) + 'px'
+        this.gridWidth = this.grid.element.clientWidth
+        this.gridHeight = this.grid.element.clientHeight
 
-        gridContainer.style.top = String(-height * 0.125) + 'px'
+        this.grid.element.style.marginLeft = String(-width * ((this.size - 1) / 4)) + 'px'
+
+        this.grid.container.style.marginTop =
+            String(-height * ((this.size - 1) / 4)) + 'px'
+
+        console.log((this.size - 1) / 2)
     }
 
     initMasonry() {
-        var grid = document.querySelector('.grid')
+        var grid = this.grid.element
         var msnry = new Masonry(grid, {
             itemSelector: '.grid-curtain',
             percentPosition: true,
@@ -90,63 +97,7 @@ class Tabletop {
     initListeners() {
         var _this = this
 
-        var tween = new TweenMax.set(this.grid.element, {x: 0, y: 0})
-
-        //add listener
-        // tween.ticker.addEventListener()
-
-        // render()
-
-        function myFunction(event) {
-            //executes on every tick after the core engine updates
-        }
-
-        // infinite tween acting as a render loop
-        // TweenMax.to(this.grid.element, 1000, {
-        //     x: 0,
-        //     y: 0,
-        //     repeat: -1,
-        //     ease: Linear.easeNone,
-        //     modifiers: {
-        //         x: function (x) {
-        //             var currentX = gsap.getProperty(_this.grid.element, 'x')
-
-        //             _this.grid.x = _this.map(
-        //                 _this.mouse.x,
-        //                 0,
-        //                 _this.windowWidth,
-        //                 _this.gridWidth / 2,
-        //                 -_this.gridWidth / 2
-        //             )
-
-        //             // var easeX = currentX + (_this.grid.x - currentX) * _this.acceleration
-
-        //             _this.grid.element.style.transform =
-        //                 'translateX(' + String(easeX) + 'px)'
-
-        //             return easeX
-        //         },
-        //         y: function (y) {
-        //             var currentY = gsap.getProperty(_this.grid.element, 'y')
-
-        //             _this.grid.y = _this.map(
-        //                 _this.mouse.y,
-        //                 0,
-        //                 _this.windowHeight,
-        //                 _this.gridHeight / 2,
-        //                 -_this.gridHeight / 2
-        //             )
-
-        //             console.log(_this.grid.y)
-        //             var easeY = currentY + (_this.grid.y - currentY) * _this.acceleration
-
-        //             _this.grid.element.style.transform =
-        //                 'translateY(' + String(easeY) + 'px)'
-
-        //             return easeY
-        //         },
-        //     },
-        // })
+        TweenMax.set(this.grid.element, {x: 0, y: 0})
 
         window.addEventListener('mousemove', function (e) {
             _this.mouseMove(e)
@@ -160,14 +111,7 @@ class Tabletop {
     }
 
     resize() {
-        this.windowWidth = window.innerWidth
-        this.windowHeight = window.innerHeight
-
-        this.gridWidth = this.grid.element.clientWidth
-        this.gridHeight = this.grid.element.clientHeight
-
-        this.grid.xMax = this.windowWidth - this.gridWidth
-        this.grid.yMax = this.windowHeight - this.gridHeight
+        window.location.reload()
     }
 
     mouseMove(event) {
@@ -190,8 +134,8 @@ class Tabletop {
             _this.mouse.x,
             0,
             _this.windowWidth,
-            _this.gridWidth / 2,
-            -_this.gridWidth / 2
+            _this.gridWidth / 4,
+            -_this.gridWidth / 4
         )
 
         var easeX = currentX + (_this.grid.x - currentX) * _this.acceleration
@@ -204,15 +148,17 @@ class Tabletop {
             _this.mouse.y,
             0,
             _this.windowHeight,
-            _this.gridHeight / 2,
-            -_this.gridHeight / 2
+            _this.gridHeight / 4,
+            -_this.gridHeight / 4
         )
 
         var easeY = currentY + (_this.grid.y - currentY) * _this.acceleration
 
+        console.log('mouse:' + _this.mouse.y, 'grid:' + _this.grid.y)
+
         this.grid.oldY = easeY
 
-        _this.grid.element.style.transform =
+        _this.grid.container.style.transform =
             'translate(' + String(easeX) + 'px, ' + String(easeY) + 'px)'
     }
 
