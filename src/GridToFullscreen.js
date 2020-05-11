@@ -295,6 +295,9 @@ class GridToFullscreenEffect {
     toGrid() {
         if (!this.isFullscreen || this.isAnimating) return
 
+        let backCursor = document.getElementById('fullscreen-cover')
+        backCursor.style.display = 'none'
+
         this.isAnimating = true
         if (this.options.onToGridStart)
             this.options.onToGridStart({index: this.currentImageIndex})
@@ -395,6 +398,9 @@ class GridToFullscreenEffect {
 
     toFullscreen(itemIndex, ev) {
         if (this.isFullscreen || this.isAnimating) return
+
+        let backCursor = document.getElementById('fullscreen-cover')
+        backCursor.style.display = 'block'
 
         this.isAnimating = true
         this.currentImageIndex = itemIndex
