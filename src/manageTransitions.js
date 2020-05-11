@@ -61,9 +61,15 @@ function loadTransitions() {
     const toggleFullview = () => {
         if (transitionEffect.isFullscreen) {
             transitionEffect.toGrid()
-        } else {
         }
     }
+
+    document.addEventListener('click', () => {
+        if (transitionEffect.isAnimating) {
+            return
+        }
+        toggleFullview()
+    })
 
     // Preload all the images in the pageI
     imagesLoaded(document.querySelectorAll('img'), (instance) => {

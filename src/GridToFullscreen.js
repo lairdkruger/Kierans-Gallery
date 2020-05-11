@@ -91,24 +91,7 @@ class GridToFullscreenEffect {
 
         this.onResize = this.onResize = this.onResize.bind(this)
     }
-    resetUniforms() {
-        this.uniforms.uMeshScale.value = new THREE.Vector2(1, 1)
-        this.uniforms.uPlaneCenter.value = new THREE.Vector2(0, 0)
-        this.uniforms.uScaleToViewSize.value = new THREE.Vector2(1, 1)
-        this.uniforms.uClosestCorner.value = 0
-        this.uniforms.uMouse.value = new THREE.Vector2(0, 0)
 
-        this.uniforms.uImage.value = null
-        this.uniforms.uImageRes.value = new THREE.Vector2(1, 1)
-        this.uniforms.uImageLarge.value = null
-        this.uniforms.uImageLargeRes.value = new THREE.Vector2(1, 1)
-
-        const mesh = this.mesh
-        mesh.scale.x = 0.00001
-        mesh.scale.y = 0.00001
-        mesh.position.x = 0
-        mesh.position.y = 0
-    }
     /**
       An image 
       @typedef {Object} ImageObject
@@ -124,6 +107,7 @@ class GridToFullscreenEffect {
       Creates the textures for the plane and sets them if needed.
       @param {imageSet[]} images - Small and large images of grid items.
      */
+
     createTextures(images) {
         const textures = []
         for (let i = 0; i < images.length; i++) {
@@ -156,6 +140,7 @@ class GridToFullscreenEffect {
         this.textures = textures
         this.setCurrentTextures()
     }
+
     /**
       Sets the correct textures to the uniforms. And renders if not in a loop
      */
@@ -173,6 +158,7 @@ class GridToFullscreenEffect {
             this.render()
         }
     }
+
     /**
       Initiates THREEJS objects and adds listeners to the items
      */
@@ -192,6 +178,7 @@ class GridToFullscreenEffect {
             0.1,
             10000
         )
+
         this.camera.position.z = 50
         this.camera.lookAt = this.scene.position
 
@@ -237,7 +224,10 @@ class GridToFullscreenEffect {
             // const imageIndex = image.children[0].dataset.index
             image.addEventListener('mousedown', this.createOnMouseDown(i))
         }
+
+        document.addEventListener('mousedown', this.toGrid())
     }
+
     /**
       Creates a listener that sends item to fullscreen when activated. 
       @return {function} Event listener
@@ -247,6 +237,58 @@ class GridToFullscreenEffect {
             this.toFullscreen(itemIndex, ev)
         }
     }
+
+    resetUniforms() {
+        this.uniforms.uMeshScale.value = new THREE.Vector2(1, 1)
+        this.uniforms.uPlaneCenter.value = new THREE.Vector2(0, 0)
+        this.uniforms.uScaleToViewSize.value = new THREE.Vector2(1, 1)
+        this.uniforms.uClosestCorner.value = 0
+        this.uniforms.uMouse.value = new THREE.Vector2(0, 0)
+
+        this.uniforms.uImage.value = null
+        this.uniforms.uImageRes.value = new THREE.Vector2(1, 1)
+        this.uniforms.uImageLarge.value = null
+        this.uniforms.uImageLargeRes.value = new THREE.Vector2(1, 1)
+
+        const mesh = this.mesh
+        mesh.scale.x = 0.00001
+        mesh.scale.y = 0.00001
+        mesh.position.x = 0
+        mesh.position.y = 0
+    }
+
+    // used to track position of image when its being put down
+    updateImagePosition() {
+        const rect = this.itemsWrapper.children[
+            this.currentImageIndex
+        ].children[0].getBoundingClientRect()
+
+        const viewSize = this.getViewSize()
+        const widthViewUnit = (rect.width * viewSize.width) / window.innerWidth
+        const heightViewUnit = (rect.height * viewSize.height) / window.innerHeight
+
+        // x and y are based on top left of screen. While ThreeJs is on the center
+        const xViewUnit =
+            (rect.left * viewSize.width) / window.innerWidth - viewSize.width / 2
+        const yViewUnit =
+            (rect.top * viewSize.height) / window.innerHeight - viewSize.height / 2
+
+        const mesh = this.mesh
+
+        // // Move the object by its top left corner, not the center
+        let x = xViewUnit + widthViewUnit / 2
+        let y = -yViewUnit - heightViewUnit / 2
+
+        // geometry.translate(x, y, 0);
+        mesh.position.x = x
+        mesh.position.y = y
+
+        // Used to scale the plane from the center
+        // divided by scale so when later scaled it looks fine
+        this.uniforms.uPlaneCenter.value.x = x / widthViewUnit
+        this.uniforms.uPlaneCenter.value.y = y / heightViewUnit
+    }
+
     /*
       Tweens the plane to grid position if on fullscreen 
     */
@@ -261,6 +303,7 @@ class GridToFullscreenEffect {
             ease: this.options.easings.toGrid,
             onUpdate: () => {
                 this.render()
+                this.updateImagePosition()
             },
             onComplete: () => {
                 this.isAnimating = false
@@ -278,6 +321,10 @@ class GridToFullscreenEffect {
             },
         })
     }
+
+    /*
+    sets value that determine how the plane is resized
+    */
     recalculateUniforms(ev) {
         if (this.currentImageIndex === -1) return
 
@@ -394,23 +441,27 @@ class GridToFullscreenEffect {
       @property {number} height
       @return {Size} The size of the camera's view
      */
+
     getViewSize() {
         const fovInRadians = (this.camera.fov * Math.PI) / 180
         const height = Math.abs(this.camera.position.z * Math.tan(fovInRadians / 2) * 2)
 
         return {width: height * this.camera.aspect, height}
     }
+
     /**
       Renders ThreeJS to the canvas.
     */
     render() {
         this.renderer.render(this.scene, this.camera)
     }
+
     /**
       Resize Event Listener.
       Updates anything that uses the window's size.
       @param {Event} ev resize event 
      */
+
     onResize(ev) {
         this.camera.aspect = window.innerWidth / window.innerHeight
         this.camera.updateProjectionMatrix()
@@ -503,6 +554,7 @@ var activations = {
         }
       `,
 }
+
 function ensureFloat(num) {
     let stringed = num.toString()
     const dotIndex = stringed.indexOf('.')
@@ -511,6 +563,7 @@ function ensureFloat(num) {
     }
     return stringed
 }
+
 const transformations = {
     none: () => null,
     flipX: () => {
@@ -539,6 +592,7 @@ const transformations = {
                 step(stepFormula,beizerProgress));
         `
     },
+
     simplex: (props) => {
         let seed = ensureFloat(props.seed || 0)
         let amplitudeX = ensureFloat(props.amplitudeX || 0.5)
@@ -555,6 +609,7 @@ const transformations = {
         transformedPos.y += ${amplitudeY} * noiseY * simplexProgress;
     `
     },
+
     wavy: (props) => {
         const seed = ensureFloat(props.seed || 0)
         const amplitude = ensureFloat(props.amplitude || 0.5)
@@ -570,6 +625,7 @@ const transformations = {
         transformedPos.y = mix(transformedPos.y,cos(angle) * nextDist,  wavyProgress);
       `
     },
+
     circle: (props) => {
         return `
         float limit = 0.5;
@@ -588,6 +644,7 @@ const transformations = {
     `
     },
 }
+
 var vertexUniforms = `
       uniform float uProgress;
       uniform vec2 uScaleToViewSize;
@@ -606,6 +663,7 @@ var vertexUniforms = `
       varying vec2 scale; 
       varying float vProgress;
   `
+
 function generateShaders(activation, transform) {
     var vertex = `
       ${vertexUniforms}
@@ -750,6 +808,7 @@ var cubicBeizer = `
     return y;
   }
   `
+
 var simplex = `
   vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
   float snoise(vec2 v){
