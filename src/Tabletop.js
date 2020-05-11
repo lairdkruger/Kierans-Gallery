@@ -1,22 +1,3 @@
-var mathUtils = {
-    lerp: (a, b, n) => n * (a - b) + b,
-    linear: (t) => t,
-    easeInQuad: (t) => t * t,
-    easeOutQuad: (t) => t * (2 - t),
-    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
-    easeInCubic: (t) => t * t * t,
-    easeOutCubic: (t) => --t * t * t + 1,
-    easeInOutCubic: (t) =>
-        t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-    easeInQuart: (t) => t * t * t * t,
-    easeOutQuart: (t) => 1 - --t * t * t * t,
-    easeInOutQuart: (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t),
-    easeInQuint: (t) => t * t * t * t * t,
-    easeOutQuint: (t) => 1 + --t * t * t * t * t,
-    easeInOutQuint: (t) =>
-        t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-}
-
 class Tabletop {
     constructor() {
         this.grid = {
@@ -45,6 +26,8 @@ class Tabletop {
         // set grid to be larger than screen
         this.size = 1.33
         this.extraSpace = 1.0
+
+        this.velocity = 0.0
 
         this.init()
     }
@@ -117,37 +100,36 @@ class Tabletop {
     }
 
     updateTabletop() {
-        var _this = this
-
         var currentX = this.grid.oldX
-
-        _this.grid.x = _this.map(
-            _this.mouse.x,
-            0,
-            _this.windowWidth,
-            _this.gridWidth / 2,
-            -_this.gridWidth / 2
-        )
-
-        var easeX = currentX + (_this.grid.x - currentX) * _this.acceleration
-
-        this.grid.oldX = easeX
-
         var currentY = this.grid.oldY
 
-        _this.grid.y = _this.map(
-            _this.mouse.y,
+        this.grid.x = this.map(
+            this.mouse.x,
             0,
-            _this.windowHeight,
-            _this.gridHeight / 2,
-            -_this.gridHeight / 2
+            this.windowWidth,
+            this.gridWidth / 2,
+            -this.gridWidth / 2
         )
 
-        var easeY = currentY + (_this.grid.y - currentY) * _this.acceleration
+        this.grid.y = this.map(
+            this.mouse.y,
+            0,
+            this.windowHeight,
+            this.gridHeight / 2,
+            -this.gridHeight / 2
+        )
 
+        var easeX = currentX + (this.grid.x - currentX) * this.acceleration
+        var easeY = currentY + (this.grid.y - currentY) * this.acceleration
+
+        this.velocity = Math.sqrt(
+            Math.abs(easeY - this.grid.oldY) ** 2 + Math.abs(easeX - this.grid.oldX) ** 2
+        )
+
+        this.grid.oldX = easeX
         this.grid.oldY = easeY
 
-        _this.grid.container.style.transform =
+        this.grid.container.style.transform =
             'translate(' + String(easeX) + 'px, ' + String(easeY) + 'px)'
     }
 

@@ -16,38 +16,139 @@
     <body>
         <div id="grid-canvas"></div>
 
-        <div class="grid-container">
-            <div class="grid">
-                <div class="grid-curtain portrait">
-                    <img class="grid-image" src="images/1.jpg" crossorigin="anonymous" />
-                </div>
-                <div class="grid-curtain landscape">
-                    <img class="grid-image" src="images/2.jpg" crossorigin="anonymous" />
-                </div>
-                <div class="grid-curtain portrait">
-                    <img class="grid-image" src="images/3.jpg" crossorigin="anonymous" />
-                </div>
-                <div class="grid-curtain landscape">
-                    <img class="grid-image" src="images/4.jpg" crossorigin="anonymous" />
-                </div>
-                <div class="grid-curtain portrait">
-                    <img class="grid-image" src="images/7.jpg" crossorigin="anonymous" />
-                </div>
+        <div id="transition-canvas"></div>
 
+        <div class="grid-container">
+            <div class="grid" id="items-wrapper">
+                <div class="grid-curtain portrait">
+                    <img
+                        class="grid__item-img"
+                        src="images/1.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/1.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
                 <div class="grid-curtain landscape">
-                    <img class="grid-image" src="images/6.jpg" crossorigin="anonymous" />
+                    <img
+                        class="grid__item-img"
+                        src="images/2.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/2.jpg"
+                        crossorigin="anonymous"
+                    />
                 </div>
                 <div class="grid-curtain portrait">
-                    <img class="grid-image" src="images/5.jpg" crossorigin="anonymous" />
+                    <img
+                        class="grid__item-img"
+                        src="images/3.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/3.jpg"
+                        crossorigin="anonymous"
+                    />
                 </div>
                 <div class="grid-curtain landscape">
-                    <img class="grid-image" src="images/8.jpg" crossorigin="anonymous" />
-                </div>
-                <div class="grid-curtain landscape">
-                    <img class="grid-image" src="images/9.jpg" crossorigin="anonymous" />
+                    <img
+                        class="grid__item-img"
+                        src="images/4.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/4.jpg"
+                        crossorigin="anonymous"
+                    />
                 </div>
                 <div class="grid-curtain portrait">
-                    <img class="grid-image" src="images/10.jpg" crossorigin="anonymous" />
+                    <img
+                        class="grid__item-img"
+                        src="images/5.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/5.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img
+                        class="grid__item-img"
+                        src="images/6.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/6.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img
+                        class="grid__item-img"
+                        src="images/7.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/7.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img
+                        class="grid__item-img"
+                        src="images/8.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/8.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
+                <div class="grid-curtain landscape">
+                    <img
+                        class="grid__item-img"
+                        src="images/9.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/9.jpg"
+                        crossorigin="anonymous"
+                    />
+                </div>
+                <div class="grid-curtain portrait">
+                    <img
+                        class="grid__item-img"
+                        src="images/10.jpg"
+                        alt="An image"
+                        crossorigin="anonymous"
+                    />
+                    <img
+                        class="grid__item-img grid__item-img--large"
+                        src="images/10.jpg"
+                        crossorigin="anonymous"
+                    />
                 </div>
             </div>
         </div>
@@ -59,11 +160,17 @@
             crossorigin="anonymous"
         ></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+        <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/EasePack.min.js"></script>
 
-        <script src="src/masonry.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 
         <script src="src/Tabletop.js"></script>
+        <script src="src/GridToFullscreen.js"></script>
+        <script src="src/basicDemo.js"></script>
+        <script src="src/manageTransitions.js"></script>
+
         <script src="js/master.js"></script>
     </body>
 </html>
