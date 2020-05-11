@@ -2,11 +2,8 @@ function loadTransitions() {
     let currentIndex
     const itemsWrapper = document.getElementById('items-wrapper')
     const thumbs = [...itemsWrapper.querySelectorAll('.grid-curtain')]
-    const fullviewItems = [...document.querySelectorAll('.fullview__item')]
-    const backToGridCtrl = document.querySelector('.fullview__close')
-    const transitionEffectDuration = 1.8
 
-    console.log(fullviewItems)
+    const transitionEffectDuration = 1.8
 
     const transitionEffect = createDemoEffect({
         activation: {type: 'closestCorner'},
@@ -52,7 +49,6 @@ function loadTransitions() {
                     */
         onToGridFinish: ({index, lastIndex}) => {
             thumbs[lastIndex].style.opacity = 1
-            fullviewItems[currentIndex].classList.remove('fullview__item--current')
         },
         easings: {
             toFullscreen: Quint.easeOut,
@@ -64,52 +60,10 @@ function loadTransitions() {
 
     const toggleFullview = () => {
         if (transitionEffect.isFullscreen) {
-            TweenLite.to(
-                fullviewItems[currentIndex].querySelector('.fullview__item-title'),
-                0.2,
-                {
-                    ease: Quad.easeOut,
-                    opacity: 0,
-                    x: '5%',
-                }
-            )
-            TweenLite.to(backToGridCtrl, 0.2, {
-                ease: Quad.easeOut,
-                opacity: 0,
-                scale: 0,
-            })
-
             transitionEffect.toGrid()
         } else {
-            fullviewItems[currentIndex].classList.add('fullview__item--current')
-
-            TweenLite.to(
-                fullviewItems[currentIndex].querySelector('.fullview__item-title'),
-                0.8,
-                {
-                    ease: Expo.easeOut,
-                    startAt: {x: '5%'},
-                    opacity: 1,
-                    x: '0%',
-                    delay: transitionEffectDuration * 0.3,
-                }
-            )
-            TweenLite.to(backToGridCtrl, 0.8, {
-                ease: Expo.easeOut,
-                startAt: {scale: 0},
-                opacity: 1,
-                scale: 1,
-                delay: transitionEffectDuration * 0.3,
-            })
         }
     }
-
-    backToGridCtrl.addEventListener('click', () => {
-        if (transitionEffect.isAnimating) {
-            return
-        }
-        toggleFullview()
-    })
 
     // Preload all the images in the pageI
     imagesLoaded(document.querySelectorAll('img'), (instance) => {

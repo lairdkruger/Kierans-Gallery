@@ -281,9 +281,10 @@ class GridToFullscreenEffect {
     recalculateUniforms(ev) {
         if (this.currentImageIndex === -1) return
 
-        const rect = this.itemsWrapper.children[
-            this.currentImageIndex
-        ].children[0].getBoundingClientRect()
+        let wrapper = this.itemsWrapper.children[this.currentImageIndex]
+        let image = wrapper.children[0]
+
+        const rect = image.getBoundingClientRect()
         const mouseNormalized = {
             x: (ev.clientX - rect.left) / rect.width,
             // Allways invert Y coord
@@ -303,6 +304,7 @@ class GridToFullscreenEffect {
         const viewSize = this.getViewSize()
         const widthViewUnit = (rect.width * viewSize.width) / window.innerWidth
         const heightViewUnit = (rect.height * viewSize.height) / window.innerHeight
+
         // x and y are based on top left of screen. While ThreeJs is on the center
         const xViewUnit =
             (rect.left * viewSize.width) / window.innerWidth - viewSize.width / 2
@@ -313,7 +315,6 @@ class GridToFullscreenEffect {
         const mesh = this.mesh
 
         // // The plain's size is initially 1. So the scale is the new size
-
         mesh.scale.x = widthViewUnit
         mesh.scale.y = heightViewUnit
 
@@ -333,9 +334,18 @@ class GridToFullscreenEffect {
         this.uniforms.uMeshScale.value.x = widthViewUnit
         this.uniforms.uMeshScale.value.y = heightViewUnit
 
-        this.uniforms.uScaleToViewSize.value.x = viewSize.width / widthViewUnit - 1
-        this.uniforms.uScaleToViewSize.value.y = viewSize.height / heightViewUnit - 1
+        // scale to suitable size (not full screen)
+        if (wrapper.classList.contains('landscape')) {
+            // landscape
+            this.uniforms.uScaleToViewSize.value.x = 0.5
+            this.uniforms.uScaleToViewSize.value.y = 0.5
+        } else {
+            //portrait
+            this.uniforms.uScaleToViewSize.value.x = 0.2
+            this.uniforms.uScaleToViewSize.value.y = 0.2
+        }
     }
+
     toFullscreen(itemIndex, ev) {
         if (this.isFullscreen || this.isAnimating) return
 
