@@ -6,6 +6,8 @@ function loadTransitions() {
     const backToGridCtrl = document.querySelector('.fullview__close')
     const transitionEffectDuration = 1.8
 
+    console.log(fullviewItems)
+
     const transitionEffect = createDemoEffect({
         activation: {type: 'closestCorner'},
         timing: {
@@ -57,6 +59,7 @@ function loadTransitions() {
             toGrid: Quint.easeOut,
         },
     })
+
     transitionEffect.init()
 
     const toggleFullview = () => {

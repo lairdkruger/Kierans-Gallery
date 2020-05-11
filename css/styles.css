@@ -72,13 +72,23 @@ body {
     vertical-align: middle;
     width: 100%;
     /* hide the original image */
-    opacity: 0;
-}
-
-/*** in case of error show the image ***/
-.no-curtains .grid-curtain {
-}
-
-.no-curtains .grid-curtain img {
     opacity: 1;
+}
+
+.grid__item-img--large {
+    pointer-events: none;
+    position: fixed;
+    opacity: 0;
+    display: none;
+}
+
+.fullview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.fullview__item {
+    position: absolute;
 }
