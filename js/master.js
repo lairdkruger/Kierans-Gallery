@@ -3,8 +3,5 @@ window.addEventListener('load', function () {
 
     var tableTop = new Tabletop()
 
-    var transition = new GridToFullscreenEffect(
-        document.getElementById('transition-canvas'),
-        Array.from(document.getElementsByClassName('grid-curtain'))
-    )
+    loadTransitions()
 })

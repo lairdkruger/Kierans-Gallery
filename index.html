@@ -18,7 +18,7 @@
 
         <div id="transition-canvas"></div>
 
-        <div class="grid-container">
+        <div class="grid-container" id="items-wrapper">
             <div class="grid">
                 <div class="grid-curtain portrait">
                     <img
@@ -104,6 +104,25 @@
             </div>
         </div>
 
+        <div class="fullview">
+            <div class="fullview__item">
+                <h2 class="fullview__item-title">Paris</h2>
+            </div>
+            <div class="fullview__item">
+                <h2 class="fullview__item-title">Barcelona</h2>
+            </div>
+            <div class="fullview__item">
+                <h2 class="fullview__item-title">Rome</h2>
+            </div>
+            <button class="fullview__close" aria-label="Close preview">
+                <svg aria-hidden="true" width="24" height="22px" viewBox="0 0 24 22">
+                    <path
+                        d="M11 9.586L20.192.393l1.415 1.415L12.414 11l9.193 9.192-1.415 1.415L11 12.414l-9.192 9.193-1.415-1.415L9.586 11 .393 1.808 1.808.393 11 9.586z"
+                    />
+                </svg>
+            </button>
+        </div>
+
         <script
             src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.4.1.min.220afd743d.js"
             type="text/javascript"
@@ -111,11 +130,16 @@
             crossorigin="anonymous"
         ></script>
 
+        <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/EasePack.min.js"></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 
         <script src="src/Tabletop.js"></script>
         <script src="src/GridToFullscreen.js"></script>
+        <script src="src/basicDemo.js"></script>
+        <script src="src/manageTransitions.js"></script>
 
         <script src="js/master.js"></script>
     </body>
