@@ -220,9 +220,11 @@ class GridToFullscreenEffect {
         }
 
         for (let i = 0; i < this.itemsWrapper.children.length; i++) {
-            const image = this.itemsWrapper.children[i].children[0]
-            // const imageIndex = image.children[0].dataset.index
-            image.addEventListener('mousedown', this.createOnMouseDown(i))
+            // don't include text items, only curtain images
+            if (!this.itemsWrapper.children[i].classList.contains('not-curtain')) {
+                const image = this.itemsWrapper.children[i].children[0]
+                image.addEventListener('mousedown', this.createOnMouseDown(i))
+            }
         }
 
         document.addEventListener('mousedown', this.toGrid())
