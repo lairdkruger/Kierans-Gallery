@@ -105,7 +105,7 @@ body {
 }
 
 .hero-box {
-    background-color: transparent;
+    background-color: white;
     cursor: url('../images/cursor-cross.png') 32 32, auto;
     display: flex;
     flex-direction: column;
