@@ -38,12 +38,7 @@ class Tabletop {
 
     init() {
         this.sizeGrid()
-        // this.initMasonry()
-
-        // this.resize()
-
         this.initListeners()
-
         this.render()
     }
 
@@ -62,14 +57,6 @@ class Tabletop {
         this.grid.element.style.right = String(width * ((this.size - 1) / 2)) + 'px'
     }
 
-    initMasonry() {
-        var grid = this.grid.element
-        var msnry = new Masonry(grid, {
-            itemSelector: '.grid-curtain',
-            percentPosition: true,
-        })
-    }
-
     initListeners() {
         var _this = this
 
@@ -77,7 +64,7 @@ class Tabletop {
             _this.mouseMove(e)
         })
         window.addEventListener('touchmove', function (e) {
-            _this.mouseMove(e)
+            // _this.touchMove(e)
         })
         window.addEventListener('resize', function (e) {
             _this.resize(e)
