@@ -3,9 +3,8 @@ window.addEventListener('load', function () {
 
     var tableTop = new Tabletop()
 
-    var curtainsTabletop = new CurtainsTabletop(
-        scrollShader.uniforms,
-        scrollShader.vertexShader,
-        scrollShader.fragmentShader
+    var transition = new GridToFullscreenEffect(
+        document.getElementById('transition-canvas'),
+        Array.from(document.getElementsByClassName('grid-curtain'))
     )
 })
