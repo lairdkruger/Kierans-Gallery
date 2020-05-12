@@ -89,6 +89,10 @@ class GridToFullscreenEffect {
         this.isFullscreen = false
         this.isAnimating = false
 
+        // how big the image gets when expanded
+        this.portraitGrow = 0.1
+        this.landscapeGrow = 0.5
+
         this.onResize = this.onResize = this.onResize.bind(this)
     }
 
@@ -389,12 +393,12 @@ class GridToFullscreenEffect {
         // scale to suitable size (not full screen)
         if (wrapper.classList.contains('landscape')) {
             // landscape
-            this.uniforms.uScaleToViewSize.value.x = 0.5
-            this.uniforms.uScaleToViewSize.value.y = 0.5
+            this.uniforms.uScaleToViewSize.value.x = this.landscapeGrow
+            this.uniforms.uScaleToViewSize.value.y = this.landscapeGrow
         } else {
             //portrait
-            this.uniforms.uScaleToViewSize.value.x = 0.2
-            this.uniforms.uScaleToViewSize.value.y = 0.2
+            this.uniforms.uScaleToViewSize.value.x = this.portraitGrow
+            this.uniforms.uScaleToViewSize.value.y = this.portraitGrow
         }
     }
 
