@@ -11,11 +11,10 @@ class Tabletop {
             oldY: 0,
         }
 
-        this.gridWidth = this.grid.element.clientWidth
-        this.gridHeight = this.grid.element.clientHeight
-
-        this.windowWidth = window.innerWidth
-        this.windowHeight = window.innerHeight
+        this.gridWidth = 0
+        this.gridHeight = 0
+        this.windowWidth = 0
+        this.windowHeight = 0
 
         this.acceleration = 0.05
         this.mouse = {
@@ -23,7 +22,7 @@ class Tabletop {
             y: this.windowHeight / 2,
         }
 
-        // set grid to be larger than screen
+        // how much wider the grid is than the screen (set in styles.css)
         this.size = 1.33
         this.extraSpace = 1.0
 
@@ -43,18 +42,11 @@ class Tabletop {
     }
 
     sizeGrid() {
-        // height after filled with images
-        var width = this.grid.element.clientWidth
-
-        // make grid 25% larger than screen
-        this.grid.element.style.width = String(width * this.size) + 'px'
-        this.grid.element.style.height = String(this.grid.element.offsetHeight) + 'px'
+        this.windowWidth = window.innerWidth
+        this.windowHeight = window.innerHeight
 
         this.gridWidth = this.grid.element.clientWidth
         this.gridHeight = this.grid.element.clientHeight
-
-        // recenter grid in container
-        this.grid.element.style.right = String(width * ((this.size - 1) / 2)) + 'px'
     }
 
     initListeners() {
@@ -67,12 +59,9 @@ class Tabletop {
             // _this.touchMove(e)
         })
         window.addEventListener('resize', function (e) {
-            _this.resize(e)
+            // window.location.reload()
+            _this.sizeGrid()
         })
-    }
-
-    resize() {
-        window.location.reload()
     }
 
     mouseMove(event) {
