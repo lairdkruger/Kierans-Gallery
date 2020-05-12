@@ -43,6 +43,9 @@ class Tabletop {
 
         this.gridWidth = this.grid.element.clientWidth
         this.gridHeight = this.grid.element.clientHeight
+
+        this.mouse.x = this.windowWidth / 2
+        this.mouse.y = this.windowHeight / 2
     }
 
     initListeners() {
@@ -111,7 +114,7 @@ class Tabletop {
         this.grid.oldX = easeX
         this.grid.oldY = easeY
 
-        this.grid.element.style.transform =
+        this.grid.container.style.transform =
             'translate(' + String(easeX) + 'px, ' + String(easeY) + 'px)'
     }
 
