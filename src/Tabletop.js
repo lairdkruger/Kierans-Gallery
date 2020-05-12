@@ -22,10 +22,6 @@ class Tabletop {
             y: this.windowHeight / 2,
         }
 
-        // how much wider the grid is than the screen (set in styles.css)
-        this.size = 1.33
-        this.extraSpace = 1.0
-
         this.velocity = 0.0
 
         this.init()
@@ -59,7 +55,6 @@ class Tabletop {
             // _this.touchMove(e)
         })
         window.addEventListener('resize', function (e) {
-            // window.location.reload()
             _this.sizeGrid()
         })
     }
@@ -75,7 +70,7 @@ class Tabletop {
         }
     }
 
-    updateTabletop() {
+    moveTabletop() {
         var currentX = this.grid.oldX
         var currentY = this.grid.oldY
 
@@ -105,12 +100,12 @@ class Tabletop {
         this.grid.oldX = easeX
         this.grid.oldY = easeY
 
-        this.grid.container.style.transform =
+        this.grid.element.style.transform =
             'translate(' + String(easeX) + 'px, ' + String(easeY) + 'px)'
     }
 
     render() {
-        this.updateTabletop()
+        this.moveTabletop()
 
         window.requestAnimationFrame(this.render.bind(this))
     }
