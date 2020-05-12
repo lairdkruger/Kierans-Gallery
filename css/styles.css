@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Splendid';
+    src: url('../fonts/Splendid/SplendidN.eot');
+    src: url('../fonts/Splendid/SplendidN.woff2') format('woff2');
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -9,7 +15,12 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     cursor: url('../images/cursor-cross.png') 32 32, auto;
-    font-family: 'Cutive Mono', monospace;
+    /* font-family: 'Cutive Mono', monospace; */
+    font-family: 'Splendid', monospace;
+}
+
+span {
+    display: inline-block;
 }
 
 @media only screen and (max-device-width: 480px) {
