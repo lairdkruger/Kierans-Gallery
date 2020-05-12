@@ -52,7 +52,7 @@ class Tabletop {
             _this.mouseMove(e)
         })
         window.addEventListener('touchmove', function (e) {
-            // _this.touchMove(e)
+            _this.touchMove(e)
         })
         window.addEventListener('resize', function (e) {
             _this.sizeGrid()
@@ -67,6 +67,17 @@ class Tabletop {
         } else {
             this.mouse.x = event.clientX
             this.mouse.y = event.clientY
+        }
+    }
+
+    touchMove(event) {
+        if (event.targetTouches && event.targetTouches[0]) {
+            event.preventDefault()
+            this.mouse.x = event.targetTouches[0].clientX
+            this.mouse.y = event.targetTouches[0].clientY
+        } else {
+            this.mouse.x = this.windowWidth - event.clientX
+            this.mouse.y = this.windowWidth - event.clientY
         }
     }
 
