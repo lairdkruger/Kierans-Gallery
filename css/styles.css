@@ -68,7 +68,7 @@ body {
 .grid-curtain {
     cursor: url('../images/cursor-hover.png') 32 32, pointer;
     background-color: lightblue;
-    margin: 2.5%;
+    margin: 3.5% 2.5%;
 }
 
 .portrait {
@@ -106,20 +106,33 @@ body {
 
 .hero-box {
     background-color: white;
+    padding: 15px;
     cursor: url('../images/cursor-cross.png') 32 32, auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
+    min-height: 20vw;
+    /* border: 1px solid #cccccc; */
 }
 
 .hero-title {
+    width: 50%;
+    padding: 0;
+    margin: 0;
     font-size: 16px;
+    color: #333333;
     text-align: center;
 }
 
 .hero-paragraph {
+    position: relative;
+    padding: 0;
+    margin: 0;
     width: 50%;
     text-align: end;
+    align-self: flex-end;
+    justify-self: flex-end;
     font-size: 13px;
+    color: #333333;
 }
