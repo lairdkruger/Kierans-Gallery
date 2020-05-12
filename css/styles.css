@@ -12,6 +12,13 @@ body {
     font-family: 'Cutive Mono', monospace;
 }
 
+@media only screen and (max-device-width: 480px) {
+    body {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+}
+
 ::selection {
     background: lightblue; /* WebKit/Blink Browsers */
 }
