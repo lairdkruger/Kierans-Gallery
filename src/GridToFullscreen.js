@@ -96,7 +96,7 @@ class GridToFullscreenEffect {
         } else {
             // mobile
             this.portraitGrow = 2.3
-            this.landscapeGrow = 3.0
+            this.landscapeGrow = 2.5
         }
 
         this.onResize = this.onResize = this.onResize.bind(this)
