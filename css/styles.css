@@ -69,6 +69,7 @@ span {
 @media only screen and (max-device-width: 480px) {
     .everything-aligner {
         justify-content: start;
+        margin: 25vw;
     }
 }
 
