@@ -66,6 +66,12 @@ span {
     justify-content: center;
 }
 
+@media only screen and (max-device-width: 480px) {
+    .everything-aligner {
+        justify-content: start;
+    }
+}
+
 .grid-container {
     margin: 0;
     padding: 0;
