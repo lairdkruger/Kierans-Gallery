@@ -14,7 +14,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     overflow-y: hidden;
-    cursor: url('../images/cursor-cross.png') 32 32, auto;
+    cursor: url('../images/cursor-cross.png') 16 16, auto;
     /* font-family: 'Cutive Mono', monospace; */
     font-family: 'Splendid', monospace;
 }
@@ -55,12 +55,13 @@ span {
     width: 100%;
     height: 100vh;
     display: none;
-    cursor: url('../images/cursor-close.png') 32 32, auto;
+    cursor: url('../images/cursor-close.png') 16 16, auto;
 }
 
 .everything-aligner {
     width: 100%;
     height: 100vh;
+    /* magic number to center things */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,11 +84,13 @@ span {
     margin: auto;
     padding: 0;
     position: relative;
+    left: -12.5%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    width: 133%;
+    /* larger than screen */
+    width: 125%;
     height: auto;
 }
 
@@ -101,17 +104,27 @@ span {
 
 /* Use this to size margins on images */
 .grid-curtain {
-    cursor: url('../images/cursor-hover.png') 32 32, pointer;
+    cursor: url('../images/cursor-hover.png') 16 16, pointer;
     background-color: lightblue;
-    margin: 3.5% 2.5%;
+    margin: 3% 2.5%;
 }
 
 .portrait {
-    width: 15%;
+    width: 12%;
 }
 
 .landscape {
-    width: 20%;
+    width: 18%;
+}
+
+@media only screen and (max-width: 480px) {
+    .portrait {
+        width: 15%;
+    }
+
+    .landscape {
+        width: 20%;
+    }
 }
 
 .grid-curtain img {
@@ -142,7 +155,7 @@ span {
 .hero-box {
     background-color: white;
     padding: 15px;
-    cursor: url('../images/cursor-cross.png') 32 32, auto;
+    cursor: url('../images/cursor-cross.png') 16 16, auto;
     display: flex;
     flex-direction: column;
     align-items: center;

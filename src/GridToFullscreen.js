@@ -91,8 +91,8 @@ class GridToFullscreenEffect {
 
         // how big the image gets when expanded
         if (window.innerWidth > 480) {
-            this.portraitGrow = 0.4
-            this.landscapeGrow = 1.1
+            this.portraitGrow = 0.7
+            this.landscapeGrow = 1.3
         } else {
             // mobile
             this.portraitGrow = 2.3
