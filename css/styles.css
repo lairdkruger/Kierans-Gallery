@@ -17,6 +17,7 @@ body {
     cursor: url('../images/cursor-cross.png') 16 16, auto;
     /* font-family: 'Cutive Mono', monospace; */
     font-family: 'Splendid', monospace;
+    color: #333333;
 }
 
 span {
@@ -31,10 +32,10 @@ span {
 }
 
 ::selection {
-    background: lightblue; /* WebKit/Blink Browsers */
+    background: #c4e9f5; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-    background: lightblue; /* WebKit/Blink Browsers */
+    background: #c4e9f5; /* WebKit/Blink Browsers */
 }
 
 #transition-canvas {
@@ -105,7 +106,7 @@ span {
 /* Use this to size margins on images */
 .grid-curtain {
     cursor: url('../images/cursor-hover.png') 16 16, pointer;
-    background-color: lightblue;
+    background-color: #c4e9f5;
     margin: 3% 2.5%;
 }
 
@@ -181,6 +182,13 @@ span {
     justify-self: flex-end;
 }
 
+.contact-link {
+    padding: 5vw;
+    color: #333333;
+    text-decoration: none;
+    cursor: url('../images/instagram.png') 16 16, pointer;
+}
+
 .image-description-box {
     position: absolute;
     width: 100%;
@@ -193,5 +201,5 @@ span {
     text-align: end;
     width: 33%;
     bottom: 15px;
-    right: 15px;
+    right: 15vw;
 }
