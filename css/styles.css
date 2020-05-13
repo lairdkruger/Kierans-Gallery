@@ -23,7 +23,7 @@ span {
     display: inline-block;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
     body {
         overflow-x: auto;
         overflow-y: auto;
@@ -62,15 +62,9 @@ span {
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-@media only screen and (max-device-width: 480px) {
-    .everything-aligner {
-        justify-content: start;
-        margin: 25vw;
-    }
 }
 
 .grid-container {
@@ -95,6 +89,14 @@ span {
     justify-content: space-around;
     width: 133%;
     height: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .everything-aligner {
+        justify-content: start;
+        margin-top: 25vw;
+        margin-bottom: 12.5vw;
+    }
 }
 
 /* Use this to size margins on images */
