@@ -188,7 +188,7 @@ span {
 }
 
 .contact-link {
-    padding: 5vw;
+    padding: 5vw 0;
     color: #333333;
     text-decoration: none;
     cursor: url('../images/instagram.png') 16 16, pointer;
@@ -204,7 +204,6 @@ span {
 .image-description {
     position: absolute;
     text-align: end;
-    width: 33%;
     bottom: 15px;
     right: 15vw;
 }
