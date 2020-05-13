@@ -146,8 +146,6 @@ span {
     width: 50%;
     padding: 0;
     margin: 0;
-    font-size: 16px;
-    color: #333333;
     text-align: center;
 }
 
@@ -159,8 +157,6 @@ span {
     text-align: end;
     align-self: flex-end;
     justify-self: flex-end;
-    font-size: 14px;
-    color: #333333;
 }
 
 .image-description-box {
@@ -173,7 +169,7 @@ span {
 .image-description {
     position: absolute;
     text-align: end;
-    width: 25%;
-    bottom: 5vw;
-    right: 5vw;
+    width: 33%;
+    bottom: 15px;
+    right: 15px;
 }
