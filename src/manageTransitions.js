@@ -2,6 +2,9 @@ function loadTransitions() {
     let currentIndex
     const itemsWrapper = document.getElementById('items-wrapper')
     const thumbs = [...itemsWrapper.querySelectorAll('.grid-curtain')]
+    const descriptions = document.querySelectorAll('.image-description-box')
+
+    console.log(descriptions)
 
     const transitionEffectDuration = 1.8
 
@@ -23,33 +26,20 @@ function loadTransitions() {
                 y: 0.9,
             },
         },
+
         onToFullscreenStart: ({index}) => {
             currentIndex = index
             thumbs[currentIndex].style.opacity = 0
-
-            /*
-                        TweenLite.to(itemsWrapper, .5, {
-                            ease: Quint.easeInOut,
-                            scale: 0.5,
-                            opacity: 0
-                        });
-                        */
+            descriptions[currentIndex].style.display = 'block'
 
             toggleFullview()
         },
-        /*
-                    onToGridStart: ({ index }) => {
-                        TweenLite.to(itemsWrapper, 1, {
-                            ease: Quint.easeOut,
-                            scale: 1,
-                            opacity: 1
-                        });
-                        toggleFullview();
-                    },
-                    */
+
         onToGridFinish: ({index, lastIndex}) => {
             thumbs[lastIndex].style.opacity = 1
+            descriptions[currentIndex].style.display = 'none'
         },
+
         easings: {
             toFullscreen: Quint.easeOut,
             toGrid: Quint.easeOut,
