@@ -15,7 +15,6 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     cursor: url('../images/cursor-cross.png') 16 16, auto;
-    /* font-family: 'Cutive Mono', monospace; */
     font-family: 'Splendid', monospace;
     color: #333333;
 }
