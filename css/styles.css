@@ -191,14 +191,14 @@ span {
     padding: 5vw 0;
     color: #333333;
     text-decoration: none;
-    /* cursor: url('../images/instagram.png') 16 16, pointer; */
+    cursor: url('../images/instagram.png') 16 16, pointer;
 }
 
 .email {
     padding: 5vw 0;
     color: #333333;
     text-decoration: none;
-    cursor: url('../images/mail.png') 16 16, pointer;
+    /* cursor: url('../images/mail.png') 16 16, pointer; */
 }
 
 .image-description-box {
