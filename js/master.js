@@ -1,3 +1,7 @@
+window.addEventListener('load', function () {
+    init()
+})
+
 function init() {
     document.body.classList.add('no-curtains')
 
