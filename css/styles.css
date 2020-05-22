@@ -161,7 +161,6 @@ span {
 .hero-box {
     background-color: white;
     padding: 15px;
-    cursor: url('../images/cursor-cross.png') 16 16, auto;
     display: flex;
     flex-direction: column;
     align-items: center;
