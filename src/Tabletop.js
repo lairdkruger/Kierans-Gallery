@@ -96,20 +96,31 @@ class Tabletop {
             -this.gridWidth / 2
         )
 
-        this.grid.y = this.map(
-            this.mouse.y,
-            0,
-            this.windowHeight,
-            this.gridHeight / 2,
-            -this.gridHeight / 2
-        )
+        if (window.safari !== undefined) {
+            // handle strange safari behaviour where the bottom of the gallery can't be reached on desktop
+            // when page is full size, adds a multiplier which scales to screen size
+            this.grid.y = this.map(
+                this.mouse.y,
+                0,
+                this.windowHeight,
+                this.gridHeight / 2,
+                (-this.gridHeight / 0.75) * this.map(this.windowWidth, 0, 1080, 0, 1)
+            )
+        } else {
+            // standard behaviour
+            this.grid.y = this.map(
+                this.mouse.y,
+                0,
+                this.windowHeight,
+                this.gridHeight / 2,
+                -this.gridHeight / 2
+            )
+        }
 
         var easeX = currentX + (this.grid.x - currentX) * this.acceleration
         var easeY = currentY + (this.grid.y - currentY) * this.acceleration
 
-        this.velocity = Math.sqrt(
-            Math.abs(easeY - this.grid.oldY) ** 2 + Math.abs(easeX - this.grid.oldX) ** 2
-        )
+        // this.velocity = Math.sqrt(Math.abs(easeY - this.grid.oldY) ** 2 + Math.abs(easeX - this.grid.oldX) ** 2)
 
         this.grid.oldX = easeX
         this.grid.oldY = easeY
