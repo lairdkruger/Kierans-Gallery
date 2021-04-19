@@ -4,8 +4,6 @@ function loadTransitions() {
     const thumbs = [...itemsWrapper.querySelectorAll('.grid-curtain')]
     const descriptions = document.querySelectorAll('.image-description-box')
 
-    console.log(descriptions)
-
     const transitionEffectDuration = 1.8
 
     const transitionEffect = createDemoEffect({
